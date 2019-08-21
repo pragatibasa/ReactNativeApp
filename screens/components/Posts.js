@@ -9,7 +9,7 @@ class Posts extends React.Component {
     render() {
         return (
             <ScrollView style={styles.postsContainer}>
-                <View style={styles.pos}>
+                <View style={styles.post}>
                 {this.props.posts.map((post, index) =>
                     (
                         <View key={index} style={styles.post}>
@@ -36,11 +36,11 @@ class Posts extends React.Component {
                         </View>
                     )
                 )}
+                </View>
             </ScrollView>
         )
     }
 }
-
 
 const styles = StyleSheet.create({
     postContainer: {
@@ -74,4 +74,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
+
 export default Posts;
