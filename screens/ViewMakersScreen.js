@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList} from 'react-native';
 import {connect} from "react-redux";
 
 class ViewMakersScreen extends React.Component {
@@ -33,19 +33,27 @@ class ViewMakersScreen extends React.Component {
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
-                    <View style={styles.makers}>
-                        {this.props.makers.slice(0,9).map((user, index) =>
-                            (<Image
-                                key={index}
-                                source={{uri: user.photo}}
-                                style={{
-                                    width: 50,
-                                    height: 50,
-                                    borderRadius: 400/ 2
-                                }}
-                            />)
-                        )}
-                    </View>
+                    <FlatList
+                        data={this.props.makers}
+                        showsVerticalScrollIndicator={false}
+                        numColumns={4}
+                        columnWrapperStyle={styles.row}
+                        renderItem={({item}) =>
+                            <View style={styles.flatview}>
+                                <Image
+                                    source={{uri: item.photo}}
+                                    style={{
+                                        width: 50,
+                                        height: 50,
+                                        borderRadius: 400/ 2
+                                    }}
+                                />
+                                <Text style={styles.name}>{item.name}</Text>
+                                <Text style={styles.email}>{item.hostel}</Text>
+                            </View>
+                        }
+                        keyExtractor={item => item.email}
+                    />
                 </ScrollView>
             </View>
         );
@@ -63,11 +71,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
-    developmentModeText: {
-        marginBottom: 20,
-        color: 'rgba(0,0,0,0.4)',
-        fontSize: 14,
-        lineHeight: 19,
-        textAlign: 'center',
+    row: {
+        flex: 1,
+        justifyContent: "space-around"
     }
 });

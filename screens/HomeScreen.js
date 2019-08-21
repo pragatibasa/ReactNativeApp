@@ -6,6 +6,26 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Posts from './components/Posts';
+import Tasks from './components/Tasks';
+
+const tasks = [
+    {
+        label: "To Do",
+        icon: '',
+    },
+    {
+        label: "Files",
+        icon: '',
+    },
+    {
+        label: "Chat",
+        icon: '',
+    },
+    {
+        label: "Budget",
+        icon: '',
+    },
+]
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -59,6 +79,7 @@ class HomeScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <Posts posts={this.props.posts}/>
+                    <Tasks tasks={tasks}/>
                 </ScrollView>
             </View>
         );
