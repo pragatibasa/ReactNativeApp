@@ -25,17 +25,13 @@ class ViewMakersScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            //Heading/title of the header
             title: navigation.getParam('Title', 'Makers'),
-            //Heading style
             headerTitleStyle: {
-                // fontFamily: 'roboto',
                 alignSelf: 'center'
             },
             headerStyle: {
                 backgroundColor: navigation.getParam('BackgroundColor', 'black'),
             },
-            //Heading text color
             headerTintColor: navigation.getParam('HeaderTintColor', '#fff'),
             headerRight: (
                 <TouchableOpacity onPress={() => alert('Right Menu Clicked')}>
@@ -69,6 +65,9 @@ class ViewMakersScreen extends React.Component {
                         numColumns={4}
                         columnWrapperStyle={styles.row}
                         renderItem={({item}) =>
+                            <TouchableOpacity
+                                onPress={() => { alert(item.name) }}
+                            >
                             <View style={styles.flatview}>
                                 <Image
                                     source={{uri: item.photo}}
@@ -81,6 +80,7 @@ class ViewMakersScreen extends React.Component {
                                 <Text style={styles.name}>{item.name}</Text>
                                 <Text style={styles.hostel}>{item.hostel}</Text>
                             </View>
+                            </TouchableOpacity>
                         }
                         keyExtractor={item => item.email}
                     />

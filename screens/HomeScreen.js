@@ -80,6 +80,9 @@ class HomeScreen extends React.Component {
                     </View>
                     <Posts posts={this.props.posts}/>
                     <Tasks tasks={tasks}/>
+                    <View style={styles.activityContainer}>
+                        <Text style={styles.latestActivity}>Latest Activity</Text>
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -147,5 +150,12 @@ const styles = StyleSheet.create({
         marginTop: 30,
         display: 'flex',
         flexDirection: 'row',
+    },
+    activityContainer: {
+        width: "100%"
+    },
+    latestActivity: {
+        fontWeight: "bold",
+        alignSelf: 'flex-start'
     }
 });
