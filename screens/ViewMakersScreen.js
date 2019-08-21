@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {connect} from "react-redux";
 
 class ViewMakersScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -32,14 +33,30 @@ class ViewMakersScreen extends React.Component {
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
-                    <Text>Makers</Text>
+                    <View style={styles.makers}>
+                        {this.props.makers.slice(0,9).map((user, index) =>
+                            (<Image
+                                key={index}
+                                source={{uri: user.photo}}
+                                style={{
+                                    width: 50,
+                                    height: 50,
+                                    borderRadius: 400/ 2
+                                }}
+                            />)
+                        )}
+                    </View>
                 </ScrollView>
             </View>
         );
     }
 }
 
-export default ViewMakersScreen;
+const mapStateToProps = state => ({
+    makers: state.makers.makers,
+});
+
+export default connect(mapStateToProps)(ViewMakersScreen);
 
 const styles = StyleSheet.create({
     container: {

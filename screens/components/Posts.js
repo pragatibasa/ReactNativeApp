@@ -8,8 +8,8 @@ import {
 class Posts extends React.Component {
     render() {
         return (
-            <ScrollView style={styles.postsContainer}>
-                <View style={styles.post}>
+            <ScrollView style={styles.postsContainer} horizontal={true} showsHorizontalScrollIndicator={false}>
+                <View style={styles.postContainer}>
                 {this.props.posts.map((post, index) =>
                     (
                         <View key={index} style={styles.post}>
@@ -25,14 +25,17 @@ class Posts extends React.Component {
                                         }}
                                     />
                                 </View>
-                                <View style={styles.personDesignation}>
-                                    <Text>{post.position}</Text>
+                                <View style={styles.personDetails}>
+                                    <View><Text style={styles.personName}>{post.name}</Text></View>
+                                    <View>
+                                        <Text style={styles.personDesignation}>{post.position}</Text>
+                                    </View>
                                 </View>
                             </View>
-                            <View >
-                                <Text>{post.post}</Text>
+                            <View>
+                                <Text style={styles.postText}>{post.post}</Text>
                             </View>
-                            <View><Text>{post.comments.length} Comments</Text></View>
+                            <View><Text style={styles.comment}>{post.comments.length} Comments</Text></View>
                         </View>
                     )
                 )}
@@ -43,11 +46,12 @@ class Posts extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    postContainer: {
+    postsContainer: {
         display: 'flex',
+        flex: 1,
     },
     post: {
-        width: 250,
+        width: 300,
         alignSelf: 'center',
         justifyContent: 'center',
         borderWidth: 1,
@@ -61,8 +65,14 @@ const styles = StyleSheet.create({
         elevation: 10,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 10,
-        backgroundColor: '#fff'
+        marginTop: 20,
+        marginBottom: 10,
+        backgroundColor: '#fff',
+        padding: 20,
+    },
+    postContainer: {
+        display: 'flex',
+        flexDirection: 'row',
     },
     person: {
         display: 'flex',
@@ -70,8 +80,23 @@ const styles = StyleSheet.create({
         width: 100,
         flexDirection: 'row',
     },
+    personDetails: {
+        marginLeft: 15,
+        width: 100
+    },
+    personName: {
+      fontWeight: 'bold',
+    },
     personDesignation: {
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: 200,
+        fontSize: 10,
+    },
+    postText: {
+      marginTop: 25
+    },
+    comment: {
+        marginTop: 25,
     }
 });
 
